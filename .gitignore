@@ -1,6 +1,7 @@
 *.pyc
 *.swp
 bin/*
+build/*
 dist/*
 include/*
 lib/*
