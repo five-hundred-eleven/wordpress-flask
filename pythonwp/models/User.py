@@ -14,3 +14,12 @@ class User(db.Model):
     user_activation_key = db.Column('user_activation_key', db.String(length=255), primary_key=False, nullable=False)
     user_status = db.Column('user_status', db.Integer(), primary_key=False, nullable=False)
     display_name = db.Column('display_name', db.String(length=250), primary_key=False, nullable=False)
+
+    def serialize(self):
+
+        return {
+            'user_id': self.user_id,
+            'user_nicename': self.user_nicename,
+            'user_email': self.user_email,
+            'user_url': self.user_url,
+        }
