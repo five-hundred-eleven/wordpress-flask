@@ -6,3 +6,4 @@ include/*
 lib/*
 local/*
 environment.sh
+*.egg-info
