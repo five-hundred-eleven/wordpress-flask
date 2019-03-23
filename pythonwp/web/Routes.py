@@ -1,4 +1,4 @@
-from app import app
+from pythonwp import app
 from flask import abort, jsonify, request
 
 tasks = [
