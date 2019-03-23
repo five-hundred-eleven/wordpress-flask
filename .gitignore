@@ -1,7 +1,7 @@
 *.pyc
 *.swp
-app/config/*
 bin/*
+dist/*
 include/*
 lib/*
 local/*
