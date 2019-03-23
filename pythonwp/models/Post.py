@@ -27,5 +27,16 @@ class Post(db.Model):
     post_type = db.Column('post_type', db.String(length=20), primary_key=False, nullable=False)
     post_mime_type = db.Column('post_mime_type', db.String(length=100), primary_key=False, nullable=False)
     comment_count = db.Column('comment_count', db.Integer(), primary_key=False, nullable=False)
+
     fk_post_author = db.ForeignKeyConstraint(['post_author'], ['wp_users.ID'])
     fk_post_parent = db.ForeignKeyConstraint(['post_parent'], ['wp_posts.ID'])
+
+    def serialize(self):
+        return {
+                'post_author': self.post_author,
+                'post_date': self.post_date,
+                'post_content': self.post_content,
+                'post_title': self.post_title,
+                'post_modified': self.post_modified,
+                'post_name': self.post_name,
+        }
