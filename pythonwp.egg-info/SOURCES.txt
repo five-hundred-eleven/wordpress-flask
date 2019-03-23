@@ -1,0 +1,8 @@
+setup.py
+pythonwp/__init__.py
+pythonwp/config.py
+pythonwp.egg-info/PKG-INFO
+pythonwp.egg-info/SOURCES.txt
+pythonwp.egg-info/dependency_links.txt
+pythonwp.egg-info/requires.txt
+pythonwp.egg-info/top_level.txt
