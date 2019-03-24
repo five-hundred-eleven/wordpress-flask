@@ -2,6 +2,7 @@ from pythonwp import app
 from flask import abort, jsonify, request
 from pythonwp.models.Post import Post
 from pythonwp.services import post_service
+from sqlalchemy.orm import exc as sql_exc
 
 @app.route('/posts', methods=['GET'])
 @app.route('/posts/active', methods=['GET'])
@@ -44,7 +45,12 @@ def getAllPosts():
 
 @app.route('/posts/<int:post_id>', methods=['GET'])
 def getPostById(post_id):
-    post = post_service.getPostById(post_id)
+
+    try:
+        post = post_service.getPostById(post_id)
+    except sql_exc.NoResultFound:
+        abort(404)
+
     return jsonify({
         'post': post.serialize()
     })
