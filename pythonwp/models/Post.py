@@ -33,7 +33,6 @@ class Post(db.Model):
     fk_post_parent = db.ForeignKeyConstraint(['post_parent_id'], ['wp_posts.ID'])
 
     author = db.relationship("User")
-    parent = db.relationship("Post")
 
     def serialize(self):
         return {
@@ -54,4 +53,5 @@ class Post(db.Model):
                 'post_title': self.post_title,
                 'post_modified': self.post_modified,
                 'post_name': self.post_name,
+                'post_exerpt': self.post_excerpt,
         }

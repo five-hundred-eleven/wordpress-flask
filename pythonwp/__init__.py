@@ -12,5 +12,6 @@ app.config.from_object(Config)
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
+from web import StaticRoutes
 from web import PageRoutes
 from web import PostRoutes
