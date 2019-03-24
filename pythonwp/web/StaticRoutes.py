@@ -1,5 +1,5 @@
 from pythonwp import app
-from flask import request, send_from_directory
+from flask import render_template, request, send_from_directory
 
 @app.route('/')
 def getRoot():

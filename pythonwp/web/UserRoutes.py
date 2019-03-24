@@ -33,3 +33,7 @@ def login():
 
     session['user'] = user_serialized
     return jsonify({'user': user_serialized})
+
+@app.route("/user/getsession", methods=["GET"])
+def getUserSession():
+    return jsonify({'user': session.get('user')})
