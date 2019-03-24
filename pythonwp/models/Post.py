@@ -43,6 +43,7 @@ class Post(db.Model):
                 'post_title': self.post_title,
                 'post_modified': self.post_modified,
                 'post_name': self.post_name,
+                'post_type': self.post_type,
         }
 
     def serializeMinimal(self):
@@ -54,4 +55,5 @@ class Post(db.Model):
                 'post_modified': self.post_modified,
                 'post_name': self.post_name,
                 'post_exerpt': self.post_excerpt,
+                'post_type': self.post_type,
         }
