@@ -9,3 +9,4 @@ local/*
 environment.sh
 *.egg-info
 static/*
+flask_session/*
