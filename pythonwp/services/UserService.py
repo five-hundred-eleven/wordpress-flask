@@ -1,5 +1,5 @@
 import bcrypt
-from pythonwp.exceptions.InvalidPasswordException import InvalidPasswordException
+from pythonwp.exceptions import InvalidPasswordException
 from pythonwp.models.User import User
 from pythonwp import db
 
@@ -12,9 +12,18 @@ class UserService:
 
         user = self.__getUser(user_id)
         if not self.__checkPassword(user, password):
-            raise InvalidPasswordException()
+            raise InvalidPasswordException
         
         return user
+
+    def updatePassword(self, user_id, old_password, new_password):
+
+        user = self.__getUserById(user_id)
+        if not self.__checkPassword(user, password):
+            raise InvalidPasswordException
+
+        user.user_pass = self.__cryptPassword(new_password)
+        db.session().commit()
 
     def __cryptPassword(self, password):
         '''
@@ -24,7 +33,7 @@ class UserService:
         '''
 
         salt = bcrypt.gensalt()
-        hash = bcrypt.hashpw(password.encode("utf-8"), hash)
+        hash = bcrypt.hashpw(password.encode("utf-8"), salt)
         return hash
 
 
@@ -33,6 +42,15 @@ class UserService:
         password = password.encode("utf-8")
         return stored_hash == bcrypt.hashpw(password, stored_hash)
 
+    def __getUserById(self, user_id):
+
+        return (
+            User.query
+                .filter(db.or_(
+                    User.user_id==user_id,
+                ))
+                .one()
+        )
 
     def __getUser(self, user_id):
 
