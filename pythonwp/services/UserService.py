@@ -46,9 +46,7 @@ class UserService:
 
         return (
             User.query
-                .filter(db.or_(
-                    User.user_id==user_id,
-                ))
+                .filter(User.user_id==user_id)
                 .one()
         )
 

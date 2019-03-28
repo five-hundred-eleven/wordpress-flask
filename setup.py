@@ -7,6 +7,7 @@ setup(
         install_requires=[
             "bcrypt",
             "flask",
+            "flask-login",
             "flask-migrate",
             "mysql-python",
             "Flask-Session",

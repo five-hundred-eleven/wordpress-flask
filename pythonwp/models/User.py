@@ -1,6 +1,7 @@
-from pythonwp import db
+from flask_login import UserMixin
+from pythonwp import db, login
 
-class User(db.Model):
+class User(UserMixin, db.Model):
     
     __tablename__ = "wp_users"
 
@@ -15,6 +16,9 @@ class User(db.Model):
     user_status = db.Column('user_status', db.Integer(), primary_key=False, nullable=False)
     display_name = db.Column('display_name', db.String(length=250), primary_key=False, nullable=False)
 
+    def get_id(self):
+        return unicode(self.user_id)
+
     def serialize(self):
 
         return {
@@ -23,3 +27,7 @@ class User(db.Model):
             'user_email': self.user_email,
             'user_url': self.user_url,
         }
+
+@login.user_loader
+def load_user(id):
+    return User.query.get(int(id))
