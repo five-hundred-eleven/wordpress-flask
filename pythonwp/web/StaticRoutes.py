@@ -3,7 +3,7 @@ from flask import render_template, request, send_from_directory
 
 @app.route('/')
 def getRoot():
-    return send_from_directory("static", "index.html")
+    return render_template("index.html")
 
 @app.route("/js/<path:path>")
 def getJs(path):

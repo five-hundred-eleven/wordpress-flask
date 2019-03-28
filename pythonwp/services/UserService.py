@@ -19,7 +19,7 @@ class UserService:
     def updatePassword(self, user_id, old_password, new_password):
 
         user = self.__getUserById(user_id)
-        if not self.__checkPassword(user, password):
+        if not self.__checkPassword(user, old_password):
             raise InvalidPasswordException
 
         user.user_pass = self.__cryptPassword(new_password)
