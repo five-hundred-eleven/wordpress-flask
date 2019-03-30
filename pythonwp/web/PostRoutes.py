@@ -60,6 +60,7 @@ def getPostById(post_id):
     })
 
 @app.route('/posts/<int:post_id>/revisions', methods=['GET'])
+@login_required
 def getPostRevisionsById(post_id):
     posts = post_service.getPostRevisionsById(post_id)
     return jsonify({

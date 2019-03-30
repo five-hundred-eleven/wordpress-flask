@@ -51,15 +51,14 @@ class PostService:
 
     def getPostRevisionsById(self, post_id):
 
-        revisions = (
+        return (
             Post.query
                 .filter(db.and_(
                     Post.post_type=="revision",
                     Post.post_parent_id==post_id
                 ))
+                .order_by(Post.post_date.desc())
         )
-
-        return sorted(revisions, cmp=lambda x, y: -1 if x.post_modified > y.post_modified else 1)
 
     def updatePostFromJson(self, user, post_id, post_json):
 
