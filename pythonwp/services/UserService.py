@@ -18,7 +18,7 @@ class UserService:
 
     def updatePassword(self, user_id, old_password, new_password):
 
-        user = self.__getUserById(user_id)
+        user = User.query.get(int(user_id))
         if not self.__checkPassword(user, old_password):
             raise InvalidPasswordException
 
@@ -41,14 +41,6 @@ class UserService:
         stored_hash = user.user_pass.encode("utf-8")
         password = password.encode("utf-8")
         return stored_hash == bcrypt.hashpw(password, stored_hash)
-
-    def __getUserById(self, user_id):
-
-        return (
-            User.query
-                .filter(User.user_id==user_id)
-                .one()
-        )
 
     def __getUser(self, user_id):
 

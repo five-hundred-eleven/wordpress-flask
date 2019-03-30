@@ -1,7 +1,8 @@
-from pythonwp.models.Post import Post
 from pythonwp import db
+from pythonwp.models.Post import Post
+from pythonwp.services.PostService import PostService
 
-class PageService:
+class PageService(PostService):
 
     def __init__(self):
         pass
